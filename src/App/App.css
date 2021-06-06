@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #6d9bf7;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -35,4 +35,23 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.post-container {
+  margin: 0 auto;
+  text-align: left;
+  width: 70%;
+}
+
+.post {
+  border: 1px solid gray;
+}
+
+.post h2 {
+  font-size: 1rem;
+}
+
+.post img {
+  max-width: 100%;
+  max-height: 200px;
 }

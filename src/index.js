@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import App from './App/App';
+import { Provider } from 'react-redux';
+import store from './App/store';
+// import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
@@ -14,4 +18,30 @@ ReactDOM.render(
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// reportWebVitals();
+
+/*
+State object:
+state: {
+  postOverview: {}, // an outer object that holds the post objects to be displayed
+  searchBar: "",
+  currentPost: {
+    [id]: {
+      id,
+      title,
+      author,
+      date,
+      nr of comments,
+      awards
+    }
+  },
+  comments: {} // an outer object that holds the comments belonging to the current post 
+}
+
+what we get from the api:
+Post objects:
+
+
+Comment objects:
+
+*/

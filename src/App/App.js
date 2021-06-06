@@ -1,11 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
+import SearchBar from '../components/SearchBar/SearchBar';
+import PostOverview from '../components/Post/PostOverview';
 
 function App() {
   return (
     <div className="App">
+      <SearchBar />
+      <PostOverview />
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src='#' className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
