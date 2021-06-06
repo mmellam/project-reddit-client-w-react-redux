@@ -20,7 +20,6 @@ export const searchPosts = createAsyncThunk(
     }
 );
 
-
 export const postOverviewSlice = createSlice({
     name: 'postOverview',
     initialState: {
@@ -42,9 +41,9 @@ export const postOverviewSlice = createSlice({
         [searchPosts.pending]: (state, action) => {},
         [searchPosts.fulfilled]: (state, action) => {
             state.posts = [...action.payload.data.children];
-            console.log(action.payload)
         },
         [searchPosts.rejected]: (state, action) => {}
+
 
     }
 });

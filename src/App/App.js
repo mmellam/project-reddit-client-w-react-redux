@@ -1,6 +1,6 @@
 import './App.css';
 import SearchBar from '../components/SearchBar/SearchBar';
-import PostOverview from '../components/Post/PostOverview';
+import PostOverview from '../components/PostOverview/PostOverview';
 
 function App() {
   return (

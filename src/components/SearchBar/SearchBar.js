@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { searchPosts, selectSearchTerm, setSearchTerm } from '../Post/postOverviewSlice';
+import { searchPosts, selectSearchTerm, setSearchTerm } from '../PostOverview/postOverviewSlice';
 
 
 const SearchBar = () => {
