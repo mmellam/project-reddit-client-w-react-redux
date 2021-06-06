@@ -1,13 +1,20 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { selectPostOverview } from './postOverviewSlice';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { loadPostOverview, selectPostOverview } from './postOverviewSlice';
 
 const PostOverview = () => {
     const posts = useSelector(selectPostOverview);
-    console.log(posts)
+    console.log(posts);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(loadPostOverview());
+    }, [dispatch]);
+
+
     return (
         <section className='post-container'> 
-            <h1>post overview goes here!!</h1>
+            <h1>Recent posts</h1>
             {posts.map((post) => {
 
                 const date = new Date(post.data.created_utc * 1000);

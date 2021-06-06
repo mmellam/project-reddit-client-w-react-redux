@@ -1,26 +1,20 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { loadPostOverview } from '../Post/postOverviewSlice';
-import { searchPosts, setSearchTerm } from './searchBarSlice';
-
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { searchPosts, selectSearchTerm, setSearchTerm } from '../Post/postOverviewSlice';
 
 
 const SearchBar = () => {
-    // trigger the action from async action creator
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(loadPostOverview());
-    });
+    
+    const searchTerm = useSelector(selectSearchTerm);
 
     const onChangeHandler = (e) => {
         dispatch(setSearchTerm(e.target.value));
     }
 
     const onClickSearchHandler = () => {
-        dispatch(searchPosts());
+        dispatch(searchPosts(searchTerm));
     }
-    
 
     return (
         <div>
