@@ -1,9 +1,10 @@
 import React from 'react';
 
+//could add button to add more comments
 const Comment = (props) => {
     return (
         <div>
-            <h2>Comments</h2>
+            <h2>Top 10 Comments</h2>
             {props.comments.map((comment, index) => {
                 return index < 10 && <p>index: {index} {comment.data.body}</p>
             })}
@@ -12,7 +13,3 @@ const Comment = (props) => {
 }
 
 export default Comment;
-
-/*
-
-            */

@@ -31,6 +31,9 @@ const Post = (props) => {
         setShowWholePost(!showWholePost);
         if (showWholePost === false) {
             //setFullPost('');
+            if (currentPosts.find((post) => post.id === postId)) {
+                return;
+            }
             dispatch(fetchPost(postUrl));  
         } 
     }
@@ -70,14 +73,3 @@ const Post = (props) => {
 
 
 export default Post;
-          
-//{showWholePost ? `https://www.reddit.com${props.url}` : 'none'}
-// {isLoading ? 'loading' : null}
-//{currentPost.selftext !== undefined ?  : null}
-
-/*
-            if (showWholePost === false) {
-                //setFullPost('');
-                dispatch(fetchPost(postUrl));  
-            } 
-*/
