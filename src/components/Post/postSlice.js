@@ -5,7 +5,7 @@ export const fetchPost = createAsyncThunk(
     async (postUrl) => {
         const data = await fetch(`https://www.reddit.com${postUrl}.json`);
         const json = await data.json();
-        console.log(`https://www.reddit.com${postUrl}`)
+        //console.log(`https://www.reddit.com${postUrl}`)
         return json;
     }
 );
@@ -13,24 +13,24 @@ export const fetchPost = createAsyncThunk(
 export const postSlice = createSlice({
     name: 'post',
     initialState: {
-        currentPost: {},
+        currentPosts: [],
         isLoading: false
-        // showWholePost: false
     },
-    reducers: { /*
-        toggleShowWholePost: (state, action) => {
-            state.showWholePost === true ? state.showWholePost = false : state.showWholePost = true;
-        }*/
-    },
+    reducers: {},
     extraReducers: {
         [fetchPost.pending]: (state, action) => {
             state.isLoading = true;
         },
         [fetchPost.fulfilled]: (state, action) => {
             state.isLoading = false;
-            state.currentPost = {...action.payload[0].data.children[0].data};
-            //console.log(action.payload)
-            //console.log(state.currentPost)
+            console.log(action.payload[0].data.children[0].data);
+            const currentPost = {
+                id: action.payload[0].data.children[0].data.id,
+                fulltext: action.payload[0].data.children[0].data.selftext,
+                comments: action.payload[1].data.children
+            };
+            state.currentPosts.push(currentPost);
+            //console.log(currentPost)
         },
         [fetchPost.rejected]: (state, action) => {}
     }
@@ -38,9 +38,9 @@ export const postSlice = createSlice({
 
 })
 
-export const { toggleShowWholePost } = postSlice.actions;
+export const { resetCurrentPost } = postSlice.actions;
 
-export const selectCurrentPost = (state) => state.post.currentPost;
+export const selectCurrentPosts = (state) => state.post.currentPosts;
 export const selectIsLoading = (state) => state.post.isLoading;
 
 export default postSlice.reducer;
