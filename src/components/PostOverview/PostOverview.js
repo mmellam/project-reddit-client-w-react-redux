@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadPostOverview, selectPostOverview } from './postOverviewSlice';
-import Comments from '../Comments/Comments';
 import Post from '../Post/Post';
 
 const PostOverview = () => {
@@ -17,7 +16,7 @@ const PostOverview = () => {
 
     return (
         <section className='post-container'> 
-            <h1>Recent posts</h1>
+            <h1>Popular posts</h1>
             {posts.map((post) => {
 
                 const date = new Date(post.data.created_utc * 1000);
@@ -37,7 +36,6 @@ const PostOverview = () => {
                         </section>
 
                         <Post url={post.data.permalink} id={post.data.id}/>
-                        <Comments />
                      </div>)})}
         </section>
     )

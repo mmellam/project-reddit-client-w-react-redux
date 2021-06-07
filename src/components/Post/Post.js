@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPost, selectCurrentPosts, selectIsLoading } from './postSlice';
-
+import Comment from '../Comment/Comment';
 
 const Post = (props) => {
     const dispatch = useDispatch();
@@ -41,21 +41,29 @@ const Post = (props) => {
         )
     }
 // posts and comments displayed in markup -- how to display propeprly
+// check if comments had already been loaded into state
     return (
         <div>
             <button onClick={toggleWholePostHandler}>{buttonText}</button>
             
             <p>
-            Id: {showWholePost ? currentPosts[0].id : 'dont show it'} </p>
-               <p> Text: 
-                {showWholePost ? currentPosts[0].fulltext : 'dont show it'}
-                </p>
-                <p>comments: {showWholePost ? currentPosts[0].comments[0].data.body : 'dont show it'}
-                {console.log(postId)} 
-{console.log(currentPosts)}
-{console.log(currentPosts.id)}
+            {currentPosts.map((post) => {
+                if (showWholePost && post.id === postId) {
+                    return (
+                        <div>
+                            <p>matched</p>
+                            <p>{post.id}</p>
+                            <p>{post.fulltext}</p>
+                            <p>first comment: {post.comments[0].data.body}</p>
 
-</p>
+                            <Comment comments={post.comments}/>
+                        </div>
+                    
+                    )
+                }
+                return null
+            })}
+            </p>
         </div>
     )
 }
