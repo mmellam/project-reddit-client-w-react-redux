@@ -1,6 +1,7 @@
 import './App.css';
 import SearchBar from '../components/SearchBar/SearchBar';
 import PostOverview from '../components/PostOverview/PostOverview';
+import SavedPosts from '../components/SavedPosts/SavedPosts';
 
 // comment everything
 function App() {
@@ -12,6 +13,7 @@ function App() {
       </header>
       <SearchBar />
       <PostOverview />
+      <SavedPosts />
       <footer>React-Redux project by Melanie Bucher</footer>
     </div>
   );

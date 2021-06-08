@@ -38,8 +38,6 @@ export const postSlice = createSlice({
 
 })
 
-export const { resetCurrentPost } = postSlice.actions;
-
 export const selectCurrentPosts = (state) => state.post.currentPosts;
 export const selectIsLoading = (state) => state.post.isLoading;
 

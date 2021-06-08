@@ -29,7 +29,7 @@ export const loadSubReddits = createAsyncThunk(
     }
 )
 
-export const postOverviewSlice = createSlice({
+const postOverviewSlice = createSlice({
     name: 'postOverview',
     initialState: {
         posts: [],
