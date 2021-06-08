@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { loadPostOverview, selectPostOverview } from './postOverviewSlice';
+import { loadPostOverview, selectIsLoadingOverview, selectPostOverview } from './postOverviewSlice';
 import Post from '../Post/Post';
 
 const PostOverview = () => {
     const posts = useSelector(selectPostOverview);
+    const isLoadingOverview = useSelector(selectIsLoadingOverview);
     //console.log(posts);
     const dispatch = useDispatch();
 
@@ -12,11 +13,13 @@ const PostOverview = () => {
         dispatch(loadPostOverview());
     }, [dispatch]);
 
-
+    if (isLoadingOverview) {
+        return <div className=''>'Loading posts...'</div>
+    }
 
     return (
         <section className='post-container'> 
-            <h1>Popular posts</h1>
+            
             {posts.map((post) => {
 
                 const date = new Date(post.data.created_utc * 1000);

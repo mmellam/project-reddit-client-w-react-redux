@@ -2,25 +2,17 @@ import './App.css';
 import SearchBar from '../components/SearchBar/SearchBar';
 import PostOverview from '../components/PostOverview/PostOverview';
 
+// comment everything
 function App() {
   return (
     <div className="App">
+      <header>
+        <h1>OnePage Reddit</h1>
+        <h2>View posts and comments all on one page</h2>
+      </header>
       <SearchBar />
       <PostOverview />
-      <header className="App-header">
-        <img src='#' className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <footer>React-Redux project by Melanie Bucher</footer>
     </div>
   );
 }

@@ -20,11 +20,21 @@ export const searchPosts = createAsyncThunk(
     }
 );
 
+export const loadSubReddits = createAsyncThunk(
+    'postOverview/loadSubReddits',
+    async (subreddit) => {
+        const data = await fetch(`https://www.reddit.com${subreddit}/top.json?t=week`);
+        const json = await data.json();
+        return json;
+    }
+)
+
 export const postOverviewSlice = createSlice({
     name: 'postOverview',
     initialState: {
         posts: [],
-        searchTerm: ''
+        searchTerm: '',
+        isLoadingOverview: false
     },
     reducers: {
         setSearchTerm: (state, action) => {
@@ -32,17 +42,34 @@ export const postOverviewSlice = createSlice({
         }
     },
     extraReducers: {
-        [loadPostOverview.pending]: (state, action) => {},
+        [loadPostOverview.pending]: (state, action) => {
+            state.isLoadingOverview = true;
+        },
         [loadPostOverview.fulfilled]: (state, action) => {
+            state.isLoadingOverview = false;
             state.posts = [...action.payload.data.children];
-            console.log(action.payload.data.children);
+            //console.log(action.payload.data.children);
         },
         [loadPostOverview.rejected]: (state, action) => {},
-        [searchPosts.pending]: (state, action) => {},
+
+        [searchPosts.pending]: (state, action) => {
+            state.isLoadingOverview = true;
+        },
         [searchPosts.fulfilled]: (state, action) => {
+            state.isLoadingOverview = false;
             state.posts = [...action.payload.data.children];
         },
-        [searchPosts.rejected]: (state, action) => {}
+        [searchPosts.rejected]: (state, action) => {},
+
+        [loadSubReddits.pending]: (state, action) => {
+            state.isLoadingOverview = true;
+        },
+        [loadSubReddits.fulfilled]: (state, action) => {
+            state.isLoadingOverview = false;
+            state.posts = [...action.payload.data.children];
+        },
+        [loadSubReddits.rejected]: (state, action) => {}
+
 
 
     }
@@ -53,5 +80,6 @@ export const { setSearchTerm } = postOverviewSlice.actions;
 
 export const selectPostOverview = (state) => state.postOverview.posts;
 export const selectSearchTerm = (state) => state.postOverview.searchTerm;
+export const selectIsLoadingOverview = (state) => state.postOverview.isLoadingOverview;
 
 export default postOverviewSlice.reducer;
