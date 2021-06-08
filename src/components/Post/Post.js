@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPost, selectCurrentPosts, selectIsLoading } from './postSlice';
+import { fetchPost, selectCurrentPosts, selectIsLoading, selectFailedToLoad } from './postSlice';
 import Comment from '../Comment/Comment';
-import { addPost, addPostTitle, selectSavedPosts } from '../SavedPosts/savedPostsSlice';
+import { addPost, addPostTitle, selectSavedTitles } from '../SavedPosts/savedPostsSlice';
 import { selectPostOverview } from '../PostOverview/postOverviewSlice';
 
 const Post = (props) => {
@@ -10,17 +10,17 @@ const Post = (props) => {
 
     const currentPosts = useSelector(selectCurrentPosts);
     const isLoading = useSelector(selectIsLoading);
+    const failedToLoad = useSelector(selectFailedToLoad);
     const postsInOverview = useSelector(selectPostOverview);
-
-    const savedPosts = useSelector(selectSavedPosts);
+    const savedTitles = useSelector(selectSavedTitles);
 
     const [showWholePost, setShowWholePost] = useState(false);
     const [buttonText, setButtonText] = useState('See post with comments');
     const [saveButtonText, setSaveButtonText] = useState('Save post');
+    const [buttonState, setButtonState] = useState(false);
 
     const postUrl = props.url;
     const postId = props.id;
-
 
     useEffect(() => {
         if (showWholePost === false) {
@@ -45,25 +45,31 @@ const Post = (props) => {
         } 
     }
 
-    const onClickSavePost = (e) => {
+    useEffect(() => {
+        if (savedTitles.find((title) => title.data.id === postId)) {
+            setButtonState(true);
+            setSaveButtonText('Saved');   
+        } else {
+            setButtonState(false);
+            setSaveButtonText('Save post');
+        }
+    }, [savedTitles, postId]);
+
+    const onClickSavePost = () => {
         // also add post id to get from post state
         const postTitle = postsInOverview.filter((post) => post.data.id === postId);
         const currentPost = currentPosts.filter((post) => post.id === postId);
-        /*
-        if (savedPosts.find((post) => post.id === postId)) {
-            setSaveButtonText('Post has already been saved');
-            return;
-        } */
+
         dispatch(addPostTitle(postTitle));
         dispatch(addPost(currentPost));
-        setSaveButtonText('Saved');
-        e.target.disabled = true;
+
     }
 
     if (isLoading) {
-        return (
-            <p>Loading post...</p>
-        )
+        return <p>Loading post...</p>
+    }
+    if (failedToLoad) {
+        return <p>Network error while loading data. Please refresh the page and try again.</p>
     }
 // posts and comments displayed in markup -- how to display propeprly
 
@@ -84,7 +90,7 @@ const Post = (props) => {
 
                             <Comment comments={post.comments}/>
 
-                            <button onClick={onClickSavePost}>{saveButtonText}</button>
+                            <button onClick={onClickSavePost} disabled={buttonState}>{saveButtonText}</button>
                         </div>
                     
                     )

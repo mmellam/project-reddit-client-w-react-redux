@@ -47,7 +47,7 @@ const SearchBar = () => {
 
             
           </div>
-          <h2>Top posts in {currentSubReddit}</h2>
+          <h2>Top posts this week in {currentSubReddit}</h2>
         </div>
     )
 }

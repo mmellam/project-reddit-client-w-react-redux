@@ -34,7 +34,8 @@ const postOverviewSlice = createSlice({
     initialState: {
         posts: [],
         searchTerm: '',
-        isLoadingOverview: false
+        isLoadingOverview: false,
+        failedToLoad: false
     },
     reducers: {
         setSearchTerm: (state, action) => {
@@ -44,34 +45,45 @@ const postOverviewSlice = createSlice({
     extraReducers: {
         [loadPostOverview.pending]: (state, action) => {
             state.isLoadingOverview = true;
+            state.failedToLoad = false;
         },
         [loadPostOverview.fulfilled]: (state, action) => {
-            state.isLoadingOverview = false;
             state.posts = [...action.payload.data.children];
-            //console.log(action.payload.data.children);
+            state.isLoadingOverview = false;
+            state.failedToLoad = false;
         },
-        [loadPostOverview.rejected]: (state, action) => {},
+        [loadPostOverview.rejected]: (state, action) => {
+            state.isLoadingOverview = false;
+            state.failedToLoad = true;
+        },
 
         [searchPosts.pending]: (state, action) => {
             state.isLoadingOverview = true;
+            state.failedToLoad = false;
         },
         [searchPosts.fulfilled]: (state, action) => {
-            state.isLoadingOverview = false;
             state.posts = [...action.payload.data.children];
+            state.isLoadingOverview = false;
+            state.failedToLoad = false;
         },
-        [searchPosts.rejected]: (state, action) => {},
+        [searchPosts.rejected]: (state, action) => {
+            state.isLoadingOverview = false;
+            state.failedToLoad = true;
+        },
 
         [loadSubReddits.pending]: (state, action) => {
             state.isLoadingOverview = true;
+            state.failedToLoad = false;
         },
         [loadSubReddits.fulfilled]: (state, action) => {
-            state.isLoadingOverview = false;
             state.posts = [...action.payload.data.children];
+            state.isLoadingOverview = false;
+            state.failedToLoad = false;
         },
-        [loadSubReddits.rejected]: (state, action) => {}
-
-
-
+        [loadSubReddits.rejected]: (state, action) => {
+            state.isLoadingOverview = false;
+            state.failedToLoad = true;
+        }
     }
 });
 
@@ -81,5 +93,6 @@ export const { setSearchTerm } = postOverviewSlice.actions;
 export const selectPostOverview = (state) => state.postOverview.posts;
 export const selectSearchTerm = (state) => state.postOverview.searchTerm;
 export const selectIsLoadingOverview = (state) => state.postOverview.isLoadingOverview;
+export const selectFailedToLoad = (state) => state.postOverview.failedToLoad;
 
 export default postOverviewSlice.reducer;

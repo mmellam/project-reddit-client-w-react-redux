@@ -12,6 +12,10 @@ const savedPostsSlice = createSlice({
         },
         addPost: (state, action) => {
             state.savedPosts.push(...action.payload);
+        },
+        removePost: (state, action) => {
+            state.savedTitles = state.savedTitles.filter((title) => title.data.id !== action.payload);
+            state.savedPosts = state.savedPosts.filter((post) => post.id !== action.payload);
         }
     }
 });
@@ -19,6 +23,6 @@ const savedPostsSlice = createSlice({
 export const selectSavedPosts = (state) => state.savedPosts.savedPosts;
 export const selectSavedTitles = (state) => state.savedPosts.savedTitles;
 
-export const { addPost, addPostTitle } = savedPostsSlice.actions;
+export const { addPost, addPostTitle, removePost } = savedPostsSlice.actions;
 
 export default savedPostsSlice.reducer;

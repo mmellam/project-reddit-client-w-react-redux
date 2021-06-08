@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { loadPostOverview, selectIsLoadingOverview, selectPostOverview } from './postOverviewSlice';
+import { loadPostOverview, selectFailedToLoad, selectIsLoadingOverview, selectPostOverview } from './postOverviewSlice';
 import Post from '../Post/Post';
 
 const PostOverview = () => {
     const posts = useSelector(selectPostOverview);
     const isLoadingOverview = useSelector(selectIsLoadingOverview);
+    const failedToLoad = useSelector(selectFailedToLoad);
     //console.log(posts);
     const dispatch = useDispatch();
 
@@ -15,6 +16,9 @@ const PostOverview = () => {
 
     if (isLoadingOverview) {
         return <div className=''>'Loading posts...'</div>
+    }
+    if (failedToLoad) {
+        return <p>Network error while loading data. Please try again.</p>
     }
 
     return (
@@ -30,6 +34,7 @@ const PostOverview = () => {
                             {post.data.post_hint === 'link' ? <a href={post.data.url}>{post.data.url}</a> : null}
                             {post.data.post_hint === 'image' ? <img src={post.data.url} alt='#'/> : null}
                             {post.data.post_hint === 'hosted:video' ? <video controls width="300"><source src={post.data.media.reddit_video.fallback_url} type="video/mp4" muted></source></video> : null}
+                            {post.data.post_hint === undefined && post.data.url_overridden_by_dest !== undefined ? <a href={post.data.url_overridden_by_dest}>{post.data.url_overridden_by_dest}</a> : null}
                             
                             <p>Posted by: {post.data.author} on {date.toUTCString()} </p>
                             <p>Subreddit: {post.data.subreddit_name_prefixed}</p>
