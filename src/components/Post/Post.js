@@ -2,13 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPost, selectCurrentPosts, selectIsLoading } from './postSlice';
 import Comment from '../Comment/Comment';
-import { addPost, selectSavedPosts } from '../SavedPosts/savedPostsSlice';
+import { addPost, addPostTitle, selectSavedPosts } from '../SavedPosts/savedPostsSlice';
+import { selectPostOverview } from '../PostOverview/postOverviewSlice';
 
 const Post = (props) => {
     const dispatch = useDispatch();
 
     const currentPosts = useSelector(selectCurrentPosts);
     const isLoading = useSelector(selectIsLoading);
+    const postsInOverview = useSelector(selectPostOverview);
+
     const savedPosts = useSelector(selectSavedPosts);
 
     const [showWholePost, setShowWholePost] = useState(false);
@@ -43,12 +46,15 @@ const Post = (props) => {
     }
 
     const onClickSavePost = (e) => {
+        // also add post id to get from post state
+        const postTitle = postsInOverview.filter((post) => post.data.id === postId);
         const currentPost = currentPosts.filter((post) => post.id === postId);
         /*
         if (savedPosts.find((post) => post.id === postId)) {
             setSaveButtonText('Post has already been saved');
             return;
         } */
+        dispatch(addPostTitle(postTitle));
         dispatch(addPost(currentPost));
         setSaveButtonText('Saved');
         e.target.disabled = true;
