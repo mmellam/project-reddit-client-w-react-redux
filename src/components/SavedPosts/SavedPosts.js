@@ -57,7 +57,3 @@ const SavedPosts = () => {
 };
 
 export default SavedPosts;
-
-/*
-check audio settings for videos
-                     */

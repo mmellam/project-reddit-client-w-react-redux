@@ -7,7 +7,6 @@ const PostOverview = () => {
     const posts = useSelector(selectPostOverview);
     const isLoadingOverview = useSelector(selectIsLoadingOverview);
     const failedToLoad = useSelector(selectFailedToLoad);
-    //console.log(posts);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -50,6 +49,3 @@ const PostOverview = () => {
 }
 
 export default PostOverview;
-
-//{post.data.post_hint === 'hosted:video' ? <video width="250"><source src={post.data.url}/></video> : null}
-//                    {post.data.post_hint === 'hosted:video' ? <img src={post.data.media} alt='#'/> : null}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import ReactMarkdown from 'react-markdown';
 import { fetchPost, selectCurrentPosts, selectIsLoading, selectFailedToLoad } from './postSlice';
 import Comment from '../Comment/Comment';
 import { addPost, addPostTitle, selectSavedTitles } from '../SavedPosts/savedPostsSlice';
@@ -26,15 +27,11 @@ const Post = (props) => {
         if (showWholePost === false) {
             setButtonText('See post with comments');
         } else {
-            //dispatch(fetchPost(postUrl)); 
             setButtonText('Hide');
-            // false currentPost = {};
-            //resetCurrentPost
         }
     }, [showWholePost]);
 
     const toggleWholePostHandler = () => {
-        //reset currentpost object state to none
         setShowWholePost(!showWholePost);
         if (showWholePost === false) {
             // check if comments had already been loaded into state
@@ -56,7 +53,7 @@ const Post = (props) => {
     }, [savedTitles, postId]);
 
     const onClickSavePost = () => {
-        // also add post id to get from post state
+        // get current post title and comments from store
         const postTitle = postsInOverview.filter((post) => post.data.id === postId);
         const currentPost = currentPosts.filter((post) => post.id === postId);
 
@@ -71,28 +68,23 @@ const Post = (props) => {
     if (failedToLoad) {
         return <p>Network error while loading data. Please refresh the page and try again.</p>
     }
-// posts and comments displayed in markup -- how to display propeprly
 
     return (
         <div>
             <button onClick={toggleWholePostHandler}>{buttonText}</button>
-            
             
             <p>
             {currentPosts.map((post) => {
                 if (showWholePost && post.id === postId) {
                     return (
                         <div>
-                            <p>matched</p>
-                            <p>{post.id}</p>
                             <p>{post.fulltext}</p>
-                            <p>first comment: {post.comments[0].data.body}</p>
+                            <ReactMarkdown>{post.fulltext}</ReactMarkdown>
 
                             <Comment comments={post.comments}/>
 
                             <button onClick={onClickSavePost} disabled={buttonState}>{saveButtonText}</button>
-                        </div>
-                    
+                        </div>   
                     )
                 }
                 return null

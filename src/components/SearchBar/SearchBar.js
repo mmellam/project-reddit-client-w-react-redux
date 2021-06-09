@@ -31,6 +31,7 @@ const SearchBar = () => {
           </div>
           <div className='quick-links'>
             <h2>Suggested</h2>
+            <button value='/r/popular' onClick={onClickSubRedditHandler}>/r/popular</button>
             <button value='/r/worldnews' onClick={onClickSubRedditHandler}>/r/worldNews</button>
             <button value='/r/de' onClick={onClickSubRedditHandler}>/r/de</button>
             <button value='/r/europe' onClick={onClickSubRedditHandler}>/r/europe</button>
@@ -45,7 +46,6 @@ const SearchBar = () => {
             <button value='/r/javascript' onClick={onClickSubRedditHandler}>/r/javascript</button>
             <button value='/r/outdoors' onClick={onClickSubRedditHandler}>/r/outdoors</button>
 
-            
           </div>
           <h2>Top posts this week in {currentSubReddit}</h2>
         </div>

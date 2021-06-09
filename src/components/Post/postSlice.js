@@ -5,11 +5,10 @@ export const fetchPost = createAsyncThunk(
     async (postUrl) => {
         const data = await fetch(`https://www.reddit.com${postUrl}.json`);
         const json = await data.json();
-        //console.log(`https://www.reddit.com${postUrl}`)
         return json;
     }
 );
-// current post 
+
 export const postSlice = createSlice({
     name: 'post',
     initialState: {
@@ -31,7 +30,6 @@ export const postSlice = createSlice({
                 comments: action.payload[1].data.children
             };
             state.currentPosts.push(currentPost);
-            //console.log(currentPost)
             state.isLoading = false;
             state.failedToLoad = false;
         },
@@ -40,9 +38,7 @@ export const postSlice = createSlice({
             state.failedToLoad = true;
         }
     }
-
-
-})
+});
 
 export const selectCurrentPosts = (state) => state.post.currentPosts;
 export const selectIsLoading = (state) => state.post.isLoading;

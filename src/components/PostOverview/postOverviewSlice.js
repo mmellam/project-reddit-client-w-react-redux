@@ -27,7 +27,7 @@ export const loadSubReddits = createAsyncThunk(
         const json = await data.json();
         return json;
     }
-)
+);
 
 const postOverviewSlice = createSlice({
     name: 'postOverview',
