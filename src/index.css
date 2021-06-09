@@ -1,3 +1,4 @@
+@import-normalize;
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
 body {
@@ -7,6 +8,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #e8ecf1;
 }
 
 code {
