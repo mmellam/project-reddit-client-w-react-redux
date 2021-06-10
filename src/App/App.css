@@ -1,22 +1,94 @@
 .App {
   text-align: center;
+  width: 62%;
+  margin: 0 auto;
+
+}
+
+.search {
+  margin: 1rem auto; 
+  padding: 0;
+  background-color: #fff;
+  border-radius: 10px;
+  border: 1px solid grey;
+}
+
+.post-overview-heading {
+  text-align: left;
 }
 
 .post-container {
-  margin: 0 auto;
   text-align: left;
-  width: 62%;
 }
 
 .post {
-  border: 1px solid gray;
+  background-color: rgb(255, 255, 255);
+  padding: 0 0.25rem;
+  margin: 1rem 0;
+  border: 1px solid #fff;
+  border-radius: 16px;
 }
 
-.post h2 {
+.post p {
+  margin: 0.25rem 0;
+  padding: 0;
+}
+
+.post-title, .post-fulltext {
+  padding: 0 0.5rem;
+  font-size: 0.8rem;
+}
+
+.post-title img, .post-title video {
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+.link {
+  margin-bottom: 0.8rem;
+  max-width: 100%;
+}
+
+.post-button {
+  background-color: #475D78;
+  border: none;
+  border-radius: 3px;
+  margin: 0.8rem 0.5rem;
+  padding: 0.35rem;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: #fff;
+  font-weight: 600;
+}
+
+.loading {
+  margin: 1rem;
+
+  text-align: center;
+}
+
+.post-heading {
+  padding: 0 0.5rem;
   font-size: 1rem;
 }
 
-.post img {
-  max-width: 100%;
-  max-height: 200px;
+.comment {
+  background-color: rgb(255, 255, 255);
+  padding: 0 0.25rem;
+  margin: 0.5rem;
+  border: 0.5px solid rgb(222, 224, 224);
+  border-radius: 3px;
+  font-size: 0.8rem;
+}
+
+@media only screen and (min-width: 1024px) {
+  .App {
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .App {
+    width: 40%;
+  }
 }
