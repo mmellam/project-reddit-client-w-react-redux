@@ -1,12 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import postOverviewReducer from '../components/PostOverview/postOverviewSlice';
-import postReducer from '../components/Post/postSlice';
+import postsReducer from '../components/Posts/postsSlice';
 import savedPostsReducer from '../components/SavedPosts/savedPostsSlice';
 
 export default configureStore({
     reducer: {
-        postOverview: postOverviewReducer,
-        post: postReducer,
+        posts: postsReducer,
         savedPosts: savedPostsReducer
     }
 })

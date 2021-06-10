@@ -41,7 +41,7 @@ const SavedPosts = () => {
                         <div className='full-post'>
                             {savedPosts.map((post) => {
                                 if (post.id === title.data.id) {
-                                    return <p>{post.fulltext}</p>
+                                    return <p key={post.id}>{post.fulltext}</p>
                                 }
                                 return null;
                             })}

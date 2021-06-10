@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { loadSubReddits, searchPosts, selectSearchTerm, setSearchTerm } from '../PostOverview/postOverviewSlice';
+import { useDispatch } from 'react-redux';
+import { loadSubReddits, searchPosts } from '../Posts/postsSlice';
 
 
 const SearchBar = () => {
     const dispatch = useDispatch();
     const [currentSubReddit, setCurrentSubReddit] = useState('/r/popular');
-    
-    const searchTerm = useSelector(selectSearchTerm);
+    const [searchTerm, setSearchTerm] = useState('');
 
     const onChangeHandler = (e) => {
-        dispatch(setSearchTerm(e.target.value));
+        setSearchTerm(e.target.value);
     }
 
     const onClickSearchHandler = () => {

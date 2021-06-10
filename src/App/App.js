@@ -1,6 +1,6 @@
 import './App.css';
 import SearchBar from '../components/SearchBar/SearchBar';
-import PostOverview from '../components/PostOverview/PostOverview';
+import PostOverview from '../components/Posts/PostOverview';
 import SavedPosts from '../components/SavedPosts/SavedPosts';
 
 // comment everything
