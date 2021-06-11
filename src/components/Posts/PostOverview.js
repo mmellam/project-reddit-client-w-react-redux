@@ -1,7 +1,7 @@
 import React, { useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadPostOverview, selectFailedToLoadTitles, selectIsLoadingTitles, selectPostTitles } from './postsSlice';
-import PostTitle from '../PostTitle.js/PostTitle';
+import PostTitle from '../PostTitle/PostTitle';
 
 
 const PostOverview = () => {

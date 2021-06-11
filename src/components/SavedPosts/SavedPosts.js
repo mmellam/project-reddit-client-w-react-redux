@@ -1,19 +1,19 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { removePost, selectSavedPosts, selectSavedTitles } from './savedPostsSlice';
-
+import { removePost, selectSavedDetails, selectSavedTitles } from './savedPostsSlice';
+import PostTitle from '../PostTitle/PostTitle';
 
 
 const SavedPosts = () => {
     const dispatch = useDispatch();
     const savedTitles = useSelector(selectSavedTitles);
-    const savedPosts = useSelector(selectSavedPosts);
+    const savedDetails = useSelector(selectSavedDetails);
 
     const removePostHandler = (e) => {
         dispatch(removePost(e.target.value));
     }
 
-    if (savedPosts.length === 0) {
+    if (savedDetails.length === 0) {
         return (
             <div>
                 <h2>Saved for later</h2>
@@ -27,6 +27,21 @@ const SavedPosts = () => {
             <h2>Saved for later</h2>
             {savedTitles.map((title) => {
                 return (
+                    <div className='post' key={title.data.id}>
+                        <PostTitle post={title.data} />
+                        <button onClick={removePostHandler} value={title.data.id}>Remove</button>
+                    </div>
+                    )
+            })}
+            {console.log(savedTitles)}
+            {console.log(savedDetails)}
+        </section>
+    )
+};
+
+export default SavedPosts;
+
+/*
                     <div className='post' key={title.data.id}>
                         <div className='post'>
                             <h2>{title.data.title}</h2>
@@ -46,14 +61,7 @@ const SavedPosts = () => {
                                 return null;
                             })}
                         </div>
-                        <button onClick={removePostHandler} value={title.data.id}>Remove</button>
+                        
                      </div>
-                    )
-            })}
-            {console.log(savedTitles)}
-            {console.log(savedPosts)}
-        </section>
-    )
-};
 
-export default SavedPosts;
+*/
