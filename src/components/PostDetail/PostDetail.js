@@ -48,7 +48,7 @@ const PostDetail = (props) => {
     }
 
     if (failedToLoadDetails) {
-        return <div>Network error while loading data. Please refresh the page and try again.</div>
+        return <div className='loading'>Network error while loading data. Please refresh the page and try again.</div>
     } 
 
     return (
@@ -61,7 +61,7 @@ const PostDetail = (props) => {
                                 <ReactMarkdown className='post-fulltext'>{post.fulltext}</ReactMarkdown>
                             </div>
                             <Comment comments={post.comments}/>
-                            <button className='post-button' onClick={onClickSavePost} disabled={buttonState}>{saveButtonText}</button>
+                            <button className='post-button save-button' onClick={onClickSavePost} disabled={buttonState}>{saveButtonText}</button>
                         </div>   
                     )
                 }

@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown';
 const Comment = (props) => {
     return (
         <div>
-            <h2 className='post-heading'>Top 10 Comments</h2>
+            <h2 className='comment-heading'>Top 10 Comments</h2>
             {props.comments.map((comment, index) => {
                 return index < 10 && (
                     <div className='comment' key={comment.data.id}>
@@ -15,5 +15,6 @@ const Comment = (props) => {
         </div>
     )
 }
+
 
 export default Comment;

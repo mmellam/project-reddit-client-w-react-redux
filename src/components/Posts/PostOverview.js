@@ -23,7 +23,7 @@ const PostOverview = () => {
     }
 
     if (failedToLoadTitles) {
-        return <div>Network error while loading data. Please try again.</div>
+        return <div className='loading'>Network error while loading data. Please try again.</div>
     } 
 
     return (
@@ -36,5 +36,6 @@ const PostOverview = () => {
         </section>
     )
 }
+
 
 export default PostOverview;

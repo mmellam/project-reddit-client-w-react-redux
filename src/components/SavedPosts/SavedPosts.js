@@ -20,25 +20,23 @@ const SavedPosts = () => {
     if (savedDetails.length === 0) {
         return (
             <div>
-                <h2>Saved for later</h2>
-                <p>You have no saved posts yet.</p>
+                <h2 className='overview-heading'>Your saved posts</h2>
+                <div className='post'>You have no saved posts yet.</div>
             </div>
         )
     }
 
     return (
         <section className='post-container'>
-            <h2>Saved for later</h2>
+            <h2 className='overview-heading'>Your saved posts</h2>
             {savedTitles.map((title) => {
                 return (
                     <div className='post' key={title.data.id}>
                         <PostTitle post={title.data} />
-                        <button onClick={removePostHandler} value={title.data.id}>Remove</button>
+                        <button className='post-button remove-button' onClick={removePostHandler} value={title.data.id}>Remove</button>
                     </div>
                     )
             })}
-            {console.log(savedTitles)}
-            {console.log(savedDetails)}
         </section>
     )
 }

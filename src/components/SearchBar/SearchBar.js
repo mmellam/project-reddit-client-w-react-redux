@@ -19,27 +19,28 @@ const SearchBar = () => {
     // dispatch action to fetch data for the entered search term
     const onClickSearchHandler = () => {
         setCurrentResultsHeading(`for '${searchTerm}'`);
-        setTimeframe('');
         dispatch(searchPosts(searchTerm));
+        setTimeframe('');
+        setSearchTerm('');
     }
 
     // dispatch action to fetch data for the selected subreddit
     const onClickSubRedditHandler = (e) => {
         setCurrentResultsHeading(`in ${e.target.value}`);
-        setTimeframe('this week');
         dispatch(loadSubReddits(e.target.value));
+        setTimeframe('this week');
     }
 
     return (
         <div>
           <div className='search'>
             <div className='search-bar'>
-              <h1>Search reddit</h1>
-              <input type='search' onChange={onChangeHandler} autoFocus></input>
-              <button onClick={onClickSearchHandler}>Search</button>
+              
+              <input type='search' value={searchTerm} onChange={onChangeHandler} autoFocus></input>
+              <button className='search-button' onClick={onClickSearchHandler}>Search Reddit</button>
             </div>
             <div className='quick-links'>
-              <h2>Suggested</h2>
+              <h2>Suggested Subreddits</h2>
               <button value='/r/popular' onClick={onClickSubRedditHandler}>/r/popular</button>
               <button value='/r/worldnews' onClick={onClickSubRedditHandler}>/r/worldNews</button>
               <button value='/r/de' onClick={onClickSubRedditHandler}>/r/de</button>
@@ -56,7 +57,7 @@ const SearchBar = () => {
               <button value='/r/outdoors' onClick={onClickSubRedditHandler}>/r/outdoors</button>
             </div>
           </div>
-          <h2 className='post-overview-heading'>Top posts {timeframe} {currentResultsHeading}</h2>
+          <h2 className='overview-heading'>Top posts {timeframe} {currentResultsHeading}</h2>
         </div>
     )
 }

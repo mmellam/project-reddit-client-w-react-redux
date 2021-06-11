@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <header>
         <h1>OnePage Reddit</h1>
-        <h2>View posts and comments all on one page</h2>
+        <p>View posts and comments from reddit.com all on one page!</p>
       </header>
       <SearchBar />
       <PostOverview />
