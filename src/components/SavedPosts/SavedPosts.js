@@ -6,13 +6,17 @@ import PostTitle from '../PostTitle/PostTitle';
 
 const SavedPosts = () => {
     const dispatch = useDispatch();
+
+    // make store states available
     const savedTitles = useSelector(selectSavedTitles);
     const savedDetails = useSelector(selectSavedDetails);
 
+    // dispatches an action to remove that post from the 'saved' list
     const removePostHandler = (e) => {
         dispatch(removePost(e.target.value));
     }
 
+    // display empty list if no posts saved
     if (savedDetails.length === 0) {
         return (
             <div>
@@ -37,6 +41,7 @@ const SavedPosts = () => {
             {console.log(savedDetails)}
         </section>
     )
-};
+}
+
 
 export default SavedPosts;

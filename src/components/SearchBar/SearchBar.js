@@ -5,20 +5,25 @@ import { loadSubReddits, searchPosts } from '../Posts/postsSlice';
 
 const SearchBar = () => {
     const dispatch = useDispatch();
+
+    // component state
     const [currentResultsHeading, setCurrentResultsHeading] = useState('in /r/popular');
     const [searchTerm, setSearchTerm] = useState('');
     const [timeframe, setTimeframe] = useState('today');
 
+    // set entered search term as state
     const onChangeHandler = (e) => {
         setSearchTerm(e.target.value);
     }
 
+    // dispatch action to fetch data for the entered search term
     const onClickSearchHandler = () => {
         setCurrentResultsHeading(`for '${searchTerm}'`);
         setTimeframe('');
         dispatch(searchPosts(searchTerm));
     }
 
+    // dispatch action to fetch data for the selected subreddit
     const onClickSubRedditHandler = (e) => {
         setCurrentResultsHeading(`in ${e.target.value}`);
         setTimeframe('this week');
@@ -55,5 +60,6 @@ const SearchBar = () => {
         </div>
     )
 }
+
 
 export default SearchBar;

@@ -3,7 +3,6 @@ import SearchBar from '../components/SearchBar/SearchBar';
 import PostOverview from '../components/Posts/PostOverview';
 import SavedPosts from '../components/SavedPosts/SavedPosts';
 
-// comment everything
 function App() {
   return (
     <div className="App">

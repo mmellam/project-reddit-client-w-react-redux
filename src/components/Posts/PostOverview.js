@@ -7,14 +7,17 @@ import PostTitle from '../PostTitle/PostTitle';
 const PostOverview = () => {
     const dispatch = useDispatch();   
 
+    // make store states available
     const postTitles = useSelector(selectPostTitles);
     const isLoadingTitles = useSelector(selectIsLoadingTitles);
     const failedToLoadTitles = useSelector(selectFailedToLoadTitles);
-     
+    
+    // load overview on first page load
     useEffect(() => {
         dispatch(loadPostOverview());
     }, [dispatch]);
 
+    // display load and error statuses
     if (isLoadingTitles) {
         return <div className='loading'>Loading posts...</div>
     }

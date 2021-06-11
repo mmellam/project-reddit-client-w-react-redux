@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-
+// fetches data for first page load
 export const loadPostOverview = createAsyncThunk(
     'posts/loadPostOverview',
     async () => {
@@ -10,16 +10,17 @@ export const loadPostOverview = createAsyncThunk(
     }
 );
 
+// fetches data for search term entered by user
 export const searchPosts = createAsyncThunk(
     'posts/searchPosts',
     async (searchTerm) => {
         const data = await fetch(`https://www.reddit.com/search.json?q=${searchTerm}`);
         const json = await data.json();
-        console.log(searchTerm);
         return json;
     }
 );
 
+// fetches data for subreddit selected by user
 export const loadSubReddits = createAsyncThunk(
     'posts/loadSubReddits',
     async (subreddit) => {
@@ -29,6 +30,7 @@ export const loadSubReddits = createAsyncThunk(
     }
 );
 
+// fetches full post and comment data when user clicks to view whole post
 export const fetchDetails = createAsyncThunk(
     'posts/fetchDetails',
     async (postUrl) => {
@@ -41,58 +43,58 @@ export const fetchDetails = createAsyncThunk(
 const postsSlice = createSlice({
     name: 'posts',
     initialState: {
-        postTitles: [],
+        postTitles: [], // holds objects with post title data
         isLoadingTitles: false,
         failedToLoadTitles: false,
-        postDetails: [],
+        postDetails: [], // holds objects with post detail data
         isLoadingDetails: false,
         failedToLoadDetails: false
     },
     reducers: {},
     extraReducers: {
-        [loadPostOverview.pending]: (state, action) => {
+        [loadPostOverview.pending]: (state) => {
             state.isLoadingTitles = true;
             state.failedToLoadTitles = false;
         },
         [loadPostOverview.fulfilled]: (state, action) => {
-            state.postTitles = [...action.payload.data.children];
             state.isLoadingTitles = false;
             state.failedToLoadTitles = false;
+            state.postTitles = [...action.payload.data.children];
         },
-        [loadPostOverview.rejected]: (state, action) => {
+        [loadPostOverview.rejected]: (state) => {
             state.isLoadingTitles = false;
             state.failedToLoadTitles = true;
         },
 
-        [searchPosts.pending]: (state, action) => {
+        [searchPosts.pending]: (state) => {
             state.isLoadingTitles = true;
             state.failedToLoadTitles = false;
         },
         [searchPosts.fulfilled]: (state, action) => {
-            state.postTitles = [...action.payload.data.children];
             state.isLoadingTitles = false;
             state.failedToLoadTitles = false;
+            state.postTitles = [...action.payload.data.children];
         },
-        [searchPosts.rejected]: (state, action) => {
+        [searchPosts.rejected]: (state) => {
             state.isLoadingTitles = false;
             state.failedToLoadTitles = true;
         },
 
-        [loadSubReddits.pending]: (state, action) => {
+        [loadSubReddits.pending]: (state) => {
             state.isLoadingTitles = true;
             state.failedToLoadTitles = false;
         },
         [loadSubReddits.fulfilled]: (state, action) => {
-            state.postTitles = [...action.payload.data.children];
             state.isLoadingTitles = false;
             state.failedToLoadTitles = false;
+            state.postTitles = [...action.payload.data.children];
         },
-        [loadSubReddits.rejected]: (state, action) => {
+        [loadSubReddits.rejected]: (state) => {
             state.isLoadingTitles = false;
             state.failedToLoadTitles = true;
         },
 
-        [fetchDetails.pending]: (state, action) => {
+        [fetchDetails.pending]: (state) => {
             state.isLoadingDetails = true;
             state.failedToLoadDetails = false;
         },
@@ -107,7 +109,7 @@ const postsSlice = createSlice({
             };
             state.postDetails.push(postDetail);
         },
-        [fetchDetails.rejected]: (state, action) => {
+        [fetchDetails.rejected]: (state) => {
             state.isLoadingDetails = false;
             state.failedToLoadDetails = true;
         }
