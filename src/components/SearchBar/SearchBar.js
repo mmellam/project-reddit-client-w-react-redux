@@ -31,12 +31,19 @@ const SearchBar = () => {
         setTimeframe('this week');
     }
 
+    const onEnterHandler = (e) => {
+      if (e.code === 'Enter' || e.code === "NumpadEnter") {
+        //e.preventDefault();
+        onClickSearchHandler();
+      }
+    }
+
     return (
         <div>
           <div className='search'>
             <div className='search-bar'>
               
-              <input type='search' value={searchTerm} onChange={onChangeHandler} autoFocus></input>
+              <input type='search' value={searchTerm} onChange={onChangeHandler} onKeyDown={onEnterHandler} autoFocus></input>
               <button className='search-button' onClick={onClickSearchHandler}>Search Reddit</button>
             </div>
             <div className='quick-links'>

@@ -101,7 +101,7 @@ const postsSlice = createSlice({
         [fetchDetails.fulfilled]: (state, action) => {
             state.isLoadingDetails = false;
             state.failedToLoadDetails = false;
-            console.log(action.payload[0].data.children[0].data);
+            //console.log(action.payload[0].data.children[0].data);
             const postDetail = {
                 id: action.payload[0].data.children[0].data.id,
                 fulltext: action.payload[0].data.children[0].data.selftext,

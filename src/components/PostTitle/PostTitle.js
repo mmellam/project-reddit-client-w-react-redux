@@ -28,7 +28,6 @@ const PostTitle = (props) => {
                 return;
             }
             const post = postTitles.filter((post) => post.data.id === e.target.value);
-            console.log(post)
             dispatch(fetchDetails(post[0].data.permalink));  
         }   
     }
