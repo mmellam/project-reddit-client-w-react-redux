@@ -5,19 +5,23 @@ import { loadSubReddits, searchPosts } from '../Posts/postsSlice';
 
 const SearchBar = () => {
     const dispatch = useDispatch();
-    const [currentSubReddit, setCurrentSubReddit] = useState('/r/popular');
+    const [currentResultsHeading, setCurrentResultsHeading] = useState('in /r/popular');
     const [searchTerm, setSearchTerm] = useState('');
+    const [timeframe, setTimeframe] = useState('today');
 
     const onChangeHandler = (e) => {
         setSearchTerm(e.target.value);
     }
 
     const onClickSearchHandler = () => {
+        setCurrentResultsHeading(`for '${searchTerm}'`);
+        setTimeframe('');
         dispatch(searchPosts(searchTerm));
     }
 
     const onClickSubRedditHandler = (e) => {
-        setCurrentSubReddit(e.target.value);
+        setCurrentResultsHeading(`in ${e.target.value}`);
+        setTimeframe('this week');
         dispatch(loadSubReddits(e.target.value));
     }
 
@@ -47,7 +51,7 @@ const SearchBar = () => {
               <button value='/r/outdoors' onClick={onClickSubRedditHandler}>/r/outdoors</button>
             </div>
           </div>
-          <h2 className='post-overview-heading'>Top posts this week in {currentSubReddit}</h2>
+          <h2 className='post-overview-heading'>Top posts {timeframe} {currentResultsHeading}</h2>
         </div>
     )
 }
