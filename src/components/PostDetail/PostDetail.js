@@ -40,6 +40,7 @@ const PostDetail = (props) => {
         const postDetail = postDetails.filter((post) => post.id === postId);
         dispatch(addPostTitle(postTitle));
         dispatch(addPostDetail(postDetail));
+        //updateStorage();
     }
 
     // display load and error statuses

@@ -20,29 +20,3 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 // reportWebVitals();
-
-/*
-State object:
-state: {
-  postOverview: {}, // an outer object that holds the post objects to be displayed
-  searchBar: "",
-  currentPost: {
-    [id]: {
-      id,
-      title,
-      author,
-      date,
-      nr of comments,
-      awards
-    }
-  },
-  comments: {} // an outer object that holds the comments belonging to the current post 
-}
-
-what we get from the api:
-Post objects:
-
-
-Comment objects:
-
-*/
