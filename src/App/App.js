@@ -5,7 +5,7 @@ import SavedPosts from '../components/SavedPosts/SavedPosts';
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <header>
         <h1>OnePage Reddit</h1>
         <p>View posts and comments from reddit.com all on one page!</p>
@@ -13,7 +13,7 @@ function App() {
       <SearchBar />
       <PostOverview />
       <SavedPosts />
-      <footer>React-Redux project by Melanie Bucher</footer>
+      <footer>React-Redux project using the Reddit.com JSON API by Melanie Bucher</footer>
     </div>
   );
 }
