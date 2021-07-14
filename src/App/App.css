@@ -42,8 +42,14 @@ header, .overview-heading {
   padding: 0.8rem;
   border-radius: 16px;
   color: rgb(255, 255, 255);
-  background-color: #202B38;
+  background-color: #202b38;
   text-align: center;
+}
+
+header {
+  background: url('../App/bg-image-newspapers.jpg') rgba(17, 24, 53, 0.568);
+  background-size: cover;
+  background-blend-mode: multiply;
 }
 
 .search-bar input {
@@ -142,6 +148,7 @@ header, .overview-heading {
 
 .post-button:hover {
   background-color: #688cb8;
+  cursor: pointer;
 }
 
 .post-button:active {
@@ -150,6 +157,7 @@ header, .overview-heading {
 
 .post-button:disabled {
   background-color: rgb(223, 223, 223);
+  cursor: default;
 }
 
 .remove-button {
@@ -159,6 +167,7 @@ header, .overview-heading {
 
 .remove-button:hover {
   background-color: #BF3300;
+  cursor: pointer;
 }
 
 /* || Comment component */
@@ -177,6 +186,12 @@ header, .overview-heading {
 }
 
 
+
+
+/* Image attribution
+Header background image retrieved from https://unsplash.com/photos/HeNrEdA4Zp4.
+Title: 'Old newspaper-stack'. Author: Utsav Srestha
+ */
 
 
 

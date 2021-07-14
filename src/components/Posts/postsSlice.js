@@ -4,7 +4,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 export const loadPostOverview = createAsyncThunk(
     'posts/loadPostOverview',
     async () => {
-        const data = await fetch('https://www.reddit.com/r/europe.json?geo_filter=GLOBAL');
+        const data = await fetch('https://www.reddit.com/r/europe/top.json?t=day');
         const json = await data.json();
         return json;
     }
