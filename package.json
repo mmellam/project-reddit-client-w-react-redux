@@ -1,8 +1,8 @@
 {
-  "homepage": "https://mmellam.github.io/project-reddit-client-w-react-redux",
+  "homepage": "./",
   "name": "project-reddit-client-w-react-redux",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.1",
     "@testing-library/jest-dom": "^5.12.0",
